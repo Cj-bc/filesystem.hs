@@ -1,3 +1,12 @@
+module My.Playground.FileSystem
+( sampleDisk
+, FSItem(..)
+, ls
+, cd
+, mkdir
+)
+where
+
 import  Data.List.Split (splitOn)
 
 type Name = String
