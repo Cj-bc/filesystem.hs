@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 13dc483cef195d801ae5d23da64d252f4ef734f4b35d387b53f6074371f8ae94
+-- hash: eac1def8d5fa369aa984241c9bbc206de43ef73a802d4c7255b35249ae3c6041
 
 name:           filesystem
 version:        0.1.0.0
@@ -28,6 +28,7 @@ source-repository head
 library
   exposed-modules:
       FileSystem
+      FileSystem.Commands
       FileSystem.Internal
   other-modules:
       Paths_filesystem
