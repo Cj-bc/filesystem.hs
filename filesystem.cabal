@@ -27,7 +27,6 @@ source-repository head
 
 library
   exposed-modules:
-      Lib
       FileSystem
       FileSystem.Internal
   other-modules:
