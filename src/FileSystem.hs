@@ -1,8 +1,7 @@
 module FileSystem
 ( FSItem(..)
-, ls
+, FSZipper
 , cd
-, mkdir
 )
 where
 
