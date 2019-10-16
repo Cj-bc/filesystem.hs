@@ -4,13 +4,13 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 6fbb410a339f2fd78dc8e4049fb512cfa9ec3711b17cc151f77781ea6551f85b
+-- hash: 13dc483cef195d801ae5d23da64d252f4ef734f4b35d387b53f6074371f8ae94
 
 name:           filesystem
 version:        0.1.0.0
-description:    Please see the README on GitHub at <https://github.com/Cj-bc/filesystem#readme>
-homepage:       https://github.com/Cj-bc/filesystem#readme
-bug-reports:    https://github.com/Cj-bc/filesystem/issues
+description:    Please see the README on GitHub at <https://github.com/Cj-bc/filesystem.hs#readme>
+homepage:       https://github.com/Cj-bc/filesystem.hs#readme
+bug-reports:    https://github.com/Cj-bc/filesystem.hs/issues
 author:         Cj.bc_sd a.k.a Cj-bc
 maintainer:     cj.bc-sd@outlook.jp
 copyright:      MIT
@@ -23,7 +23,7 @@ extra-source-files:
 
 source-repository head
   type: git
-  location: https://github.com/Cj-bc/filesystem
+  location: https://github.com/Cj-bc/filesystem.hs
 
 library
   exposed-modules:
