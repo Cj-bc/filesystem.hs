@@ -1,6 +1,5 @@
-module My.Playground.FileSystem
-( sampleDisk
-, FSItem(..)
+module FileSystem
+( FSItem(..)
 , ls
 , cd
 , mkdir
