@@ -33,6 +33,7 @@ mainLoop z = do
                 "ls" -> ls z
                 ('c':'d':' ':xs) -> cd xs z
                 "exit" -> Left ExitCalled
+                "zipper" -> Right (z, show z)
                 "" -> Right (z, "")
                 _ -> Left CommandNotFound
         resText = case result of
