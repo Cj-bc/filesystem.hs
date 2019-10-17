@@ -34,7 +34,6 @@ commandMap _                _ = Left CommandNotFound
 
 mainLoop :: FSZipper -> IO ()
 mainLoop z = do
-    putStr "$ "
     cmd <- getLine
     let result = commandMap cmd z
         resText = case result of
@@ -43,7 +42,7 @@ mainLoop z = do
         newz = case result of
                   Left _ -> z
                   Right (nz, _) -> nz
-    putStrLn resText
+
     when (resText /= "") $ putStrLn resText
     when (resText /= show ExitCalled) $ mainLoop newz
 
