@@ -39,7 +39,7 @@ mainLoop z = do
                   Left _ -> z
                   Right (nz, _) -> nz
     putStrLn resText
-    mainLoop newz
+    when (resText /= show ExitCalled) $ mainLoop newz
 
 
 main :: IO ()
