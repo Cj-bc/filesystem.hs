@@ -1,7 +1,6 @@
 module FileSystem.Internal
 ( Name, Data, Path
-, FSItem(..)
-, FSZipper(..)
+, FSItem(..) , FSZipper(..), FSError(..)
 , fsUp, fsTo, fsRename, fsNewFile
 )
 where
@@ -13,6 +12,8 @@ data FSItem = Directory Name [FSItem]
             | File Name Data deriving (Show)
 data FSCrumb = FSCrumb Name [FSItem] [FSItem] deriving (Show)
 type FSZipper = (FSItem, [FSCrumb])
+data FSError = FileNotFound
+             | OperationNotAllowed
 
 fsUp :: FSZipper -> Maybe FSZipper
 fsUp (_, []) = Nothing
