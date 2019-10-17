@@ -15,19 +15,26 @@ type FSZipper = (FSItem, [FSCrumb])
 data FSError = FileNotFound
              | OperationNotAllowed
 
-fsUp :: FSZipper -> Maybe FSZipper
-fsUp (_, []) = Nothing
+
+fsUp :: FSZipper -> Either FSError FSZipper
+fsUp (_, []) = Left OperationNotAllowed
 fsUp (i, FSCrumb name prevItems nextItems:cs)
-    = Just (Directory name (prevItems ++ [i] ++ nextItems), cs)
+    = Right (Directory name (prevItems ++ [i] ++ nextItems), cs)
 
 
-fsTo :: Name -> FSZipper -> Maybe FSZipper
-fsTo _ (File _ _, _) = Nothing
+fsTo :: Name -> FSZipper -> Either FSError FSZipper
+fsTo _      (File _ _, _) = Left OperationNotAllowed
 fsTo target (Directory basename items, bs)
-    | True `elem` map (nameIs target) items
-        = let (before, i:after) = break (nameIs target) items
-          in Just (i, FSCrumb basename before after:bs)
-    | otherwise = Nothing
+    | doesDirExist = let (before, i:after) = break (nameIs target) items
+                     in Right (i, FSCrumb basename before after:bs)
+    | otherwise    = Left OperationNotAllowed
+    where
+        doesDirExist = True `elem` map (isDir target) items
+
+
+isDir :: Name -> FSItem -> Bool
+isDir _ (File _ _) = False
+isDir target (Directory name _) = name == target
 
 nameIs :: Name -> FSItem -> Bool
 nameIs target (Directory name _) = name == target
@@ -37,5 +44,6 @@ fsRename :: Name -> FSZipper -> FSZipper
 fsRename n (Directory _ items, bs) = (Directory n items, bs)
 fsRename n (File _ c, bs) = (File n c, bs)
 
-fsNewFile :: FSItem -> FSZipper -> FSZipper
-fsNewFile item (Directory dirname cs, bs) = (Directory dirname (item:cs), bs)
+fsNewFile :: FSItem -> FSZipper -> Either FSError FSZipper
+fsNewFile _ (File _ _, _) = Left OperationNotAllowed
+fsNewFile item (Directory dirname cs, bs) = Right (Directory dirname (item:cs), bs)

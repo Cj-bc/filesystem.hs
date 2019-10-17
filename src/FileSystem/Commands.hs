@@ -4,13 +4,13 @@ module FileSystem.Commands
 )
 
 where
-import FileSystem.Internal (Name, FSZipper(..), FSItem(..))
+import FileSystem.Internal (Name, FSZipper(..), FSItem(..), FSError(..))
 
 
 -- | Create new directory
-mkdir :: Name -> FSZipper -> Maybe FSZipper
-mkdir _ (File _ _, _) = Nothing
-mkdir n (Directory name fs, bs) = Just (Directory name (Directory n []:fs), bs)
+mkdir :: Name -> FSZipper -> Either FSError FSZipper
+mkdir _ (File _ _, _)           = Left  OperationNotAllowed
+mkdir n (Directory name fs, bs) = Right (Directory name (Directory n []:fs), bs)
 
 
 -- | Shows entries in current directory
