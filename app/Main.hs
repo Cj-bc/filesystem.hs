@@ -29,9 +29,9 @@ mainLoop z = do
     putStr "$ "
     cmd <- getLine
     let result = case cmd of
-                            "ls" -> ls z
-                            ('c':'d':xs) -> cd xs
-                            "exit" -> fail
+                "ls" -> ls z
+                ('c':'d':xs) -> cd xs
+                "exit" -> fail
         resText = case result of
                     Left e -> show e
                     Right (_, t) -> t
