@@ -14,6 +14,7 @@ data FSCrumb = FSCrumb Name [FSItem] [FSItem] deriving (Show)
 type FSZipper = (FSItem, [FSCrumb])
 data FSError = FileNotFound
              | OperationNotAllowed
+             | ExitCalled
 
 
 fsUp :: FSZipper -> Either FSError FSZipper
