@@ -30,7 +30,7 @@ mainLoop z = do
     cmd <- getLine
     let result = case cmd of
                 "ls" -> ls z
-                ('c':'d':xs) -> cd xs
+                ('c':'d':xs) -> cd xs z
                 "exit" -> Left ExitCalled
         resText = case result of
                     Left e -> show e
