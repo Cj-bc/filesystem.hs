@@ -1,7 +1,8 @@
 module FileSystem
 ( FSItem(..)
-, FSZipper
+, FSZipper(..)
 , cd
+, FSError(..)
 )
 where
 
