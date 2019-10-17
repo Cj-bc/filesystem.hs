@@ -15,8 +15,9 @@ mkdir n (Directory name fs, bs) = Right (Directory name (Directory n []:fs), bs)
 
 -- | Shows entries in current directory
 -- --
-ls :: FSZipper -> IO ()
-ls (Directory _ fs, _) = mapM_ putStrLn $ map showItem fs
+ls :: FSZipper -> Either FSError (FSZipper, [String])
+ls (File _ _, _) = Left OperationNotAllowed
+ls z@(Directory _ fs, _) = Right (z, map showItem fs)
     where
         showItem (Directory name _) = "d " ++ name
         showItem (File name _) = name
