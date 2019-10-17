@@ -1,6 +1,10 @@
 module Main where
 
 import FileSystem
+import FileSystem.Commands
+
+version :: (Int, Int, Int)
+version = (0,1,0)
 
 sampleDisk :: FSItem
 sampleDisk = Directory "root"
@@ -18,5 +22,23 @@ sampleDisk = Directory "root"
                     ]
                 ]
 
+
+
+mainLoop :: FSZipper -> IO ()
+mainLoop z = do
+    putStr "$ "
+    cmd <- getLine
+    let (newz, result) = case cmd of
+                            "ls" -> ls z
+                            ("cd":xs) -> cd xs
+                            "exit" -> fail
+    putStr result
+    mainLoop newz
+
+
 main :: IO ()
-main = someFunc
+main = do
+    putStrLn $ "Practical FileSystem: v" ++ (show version) ++ "."
+    putStrLn "Made by Cj-bc"
+    let diskZipper = (sampleDisk, [])
+    mainLoop diskZipper
