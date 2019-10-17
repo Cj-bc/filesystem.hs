@@ -43,6 +43,7 @@ mainLoop z = do
                   Left _ -> z
                   Right (nz, _) -> nz
     putStrLn resText
+    when (resText /= "") $ putStrLn resText
     when (resText /= show ExitCalled) $ mainLoop newz
 
 
