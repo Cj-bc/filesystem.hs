@@ -38,7 +38,7 @@ mainLoop z = do
         newz = case result of
                   Left _ -> z
                   Right (nz, _) -> nz
-    putStr result
+    putStrLn resText
     mainLoop newz
 
 
