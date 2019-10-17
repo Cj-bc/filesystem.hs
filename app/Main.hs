@@ -32,6 +32,7 @@ mainLoop z = do
                 "ls" -> ls z
                 ('c':'d':xs) -> cd xs z
                 "exit" -> Left ExitCalled
+                "" -> Right (z, "")
         resText = case result of
                     Left e -> show e
                     Right (_, t) -> t
