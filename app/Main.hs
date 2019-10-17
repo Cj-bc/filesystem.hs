@@ -31,7 +31,7 @@ mainLoop z = do
     let result = case cmd of
                 "ls" -> ls z
                 ('c':'d':xs) -> cd xs
-                "exit" -> fail
+                "exit" -> Left ExitCalled
         resText = case result of
                     Left e -> show e
                     Right (_, t) -> t
