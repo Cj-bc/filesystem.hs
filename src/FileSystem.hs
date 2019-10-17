@@ -12,10 +12,10 @@ import  FileSystem.Internal
 
 -- | Move to given path
 -- This works as sh builtin 'cd' command (I hope)
-cd :: Path -> FSZipper -> Either FSError FSZipper
+cd :: Path -> FSZipper -> Either FSError (FSZipper, String)
 cd ('.':'.':ps) z   = fsUp z >>= cd ps
 cd ('/':ps) z       = fsUpToRoot z >>= cd ps
-cd ps z             = cdTo (splitOn "/" ps) z
+cd ps z             = cdTo (splitOn "/" ps) z >>= \nz -> return (nz, "")
 
 
 cdTo :: [Path] -> FSZipper -> Either FSError FSZipper
