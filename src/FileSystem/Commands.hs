@@ -8,9 +8,9 @@ import FileSystem.Internal (Name, FSZipper(..), FSItem(..), FSError(..))
 
 
 -- | Create new directory
-mkdir :: Name -> FSZipper -> Either FSError FSZipper
+mkdir :: Name -> FSZipper -> Either FSError (FSZipper, String)
 mkdir _ (File _ _, _)           = Left  OperationNotAllowed
-mkdir n (Directory name fs, bs) = Right (Directory name (Directory n []:fs), bs)
+mkdir n (Directory name fs, bs) = Right ((Directory name (Directory n []:fs), bs), "")
 
 
 -- | Shows entries in current directory
