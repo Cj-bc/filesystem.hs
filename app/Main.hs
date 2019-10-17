@@ -28,10 +28,16 @@ mainLoop :: FSZipper -> IO ()
 mainLoop z = do
     putStr "$ "
     cmd <- getLine
-    let (newz, result) = case cmd of
+    let result = case cmd of
                             "ls" -> ls z
                             ('c':'d':xs) -> cd xs
                             "exit" -> fail
+        resText = case result of
+                    Left e -> show e
+                    Right (_, t) -> t
+        newz = case result of
+                  Left _ -> z
+                  Right (nz, _) -> nz
     putStr result
     mainLoop newz
 
