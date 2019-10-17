@@ -30,7 +30,7 @@ mainLoop z = do
     cmd <- getLine
     let (newz, result) = case cmd of
                             "ls" -> ls z
-                            ("cd":xs) -> cd xs
+                            ('c':'d':xs) -> cd xs
                             "exit" -> fail
     putStr result
     mainLoop newz
