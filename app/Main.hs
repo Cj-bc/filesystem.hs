@@ -34,6 +34,7 @@ mainLoop z = do
                 ('c':'d':xs) -> cd xs z
                 "exit" -> Left ExitCalled
                 "" -> Right (z, "")
+                _ -> Left CommandNotFound
         resText = case result of
                     Left e -> show e
                     Right (_, t) -> t
